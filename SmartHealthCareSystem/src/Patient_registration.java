@@ -6,19 +6,25 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 public class Patient_registration extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField name;
+	private JTextField username;
+	private JTextField email;
+	private JTextField password;
+	private JTextField age;
 
 	/**
 	 * Launch the application.
@@ -58,29 +64,29 @@ public class Patient_registration extends JFrame {
 		btnBack.setBounds(240, 361, 195, 25);
 		contentPane.add(btnBack);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField.setBounds(240, 49, 195, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		name = new JTextField();
+		name.setFont(new Font("Arial", Font.PLAIN, 15));
+		name.setBounds(240, 49, 195, 22);
+		contentPane.add(name);
+		name.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_1.setBounds(240, 95, 195, 22);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		username = new JTextField();
+		username.setFont(new Font("Arial", Font.PLAIN, 15));
+		username.setBounds(240, 95, 195, 22);
+		contentPane.add(username);
+		username.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_2.setBounds(240, 142, 195, 22);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		email = new JTextField();
+		email.setFont(new Font("Arial", Font.PLAIN, 15));
+		email.setBounds(240, 142, 195, 22);
+		contentPane.add(email);
+		email.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_3.setBounds(239, 187, 196, 22);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		password = new JTextField();
+		password.setFont(new Font("Arial", Font.PLAIN, 15));
+		password.setBounds(239, 187, 196, 22);
+		contentPane.add(password);
+		password.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -97,21 +103,52 @@ public class Patient_registration extends JFrame {
 		lblNewLabel.setBounds(149, 145, 56, 16);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPhoneNo = new JLabel("Phone No.");
+		JLabel lblPhoneNo = new JLabel("Password");
 		lblPhoneNo.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblPhoneNo.setBounds(149, 190, 78, 16);
 		contentPane.add(lblPhoneNo);
 		
 		JButton btnNewButton = new JButton("Register");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					Statement stmt=con.createStatement();
+					//String sql="Select * from patients where username='"+username.getText()+"' and password='"+password.getText()+"'";
+					//ResultSet rs=stmt.executeQuery(sql);
+					String name_v = name.getText();
+					String username_v = username.getText();
+					String email_v = email.getText();
+					Integer age_v = Integer.parseInt(age.getText());
+					String pass = password.getText();
+					
+					String sql="Insert into patients (name,username,password,email,age) VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"',"+age_v+")";
+					Integer rs=stmt.executeUpdate(sql);
+					
+					if(rs > 0) {
+						JOptionPane.showMessageDialog(null,"Registration Sucessful !!");
+						contentPane.setVisible(false);
+						Login.main(null);
+					}
+					else {
+						JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
+					}
+					con.close();
+				}catch(Exception e) {
+					System.out.println(e);
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton.setBounds(240, 321, 195, 25);
 		contentPane.add(btnNewButton);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_4.setBounds(240, 230, 195, 22);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
+		age = new JTextField();
+		age.setFont(new Font("Arial", Font.PLAIN, 15));
+		age.setBounds(240, 230, 195, 22);
+		contentPane.add(age);
+		age.setColumns(10);
 		
 		JLabel lblAge = new JLabel("Age");
 		lblAge.setFont(new Font("Arial", Font.PLAIN, 15));
