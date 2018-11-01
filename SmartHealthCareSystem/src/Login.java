@@ -11,12 +11,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.sql.*;
+import javax.swing.JPasswordField;
 
 public class Login {
 
 	private JFrame frame;
 	private JTextField username;
-	private JTextField password;
+	private JPasswordField password;
 
 	/**
 	 * Launch the application.
@@ -56,12 +57,6 @@ public class Login {
 		frame.getContentPane().add(username);
 		username.setColumns(10);
 		
-		password = new JTextField();
-		password.setFont(new Font("Arial", Font.PLAIN, 15));
-		password.setBounds(217, 152, 189, 22);
-		frame.getContentPane().add(password);
-		password.setColumns(10);
-		
 		JRadioButton rdbtnPatient = new JRadioButton("Patient");
 		rdbtnPatient.setFont(new Font("Arial", Font.PLAIN, 15));
 		rdbtnPatient.setBounds(217, 197, 77, 25);
@@ -97,7 +92,10 @@ public class Login {
 					String sql="Select * from patients where username='"+username.getText()+"' and password='"+password.getText()+"'";
 					ResultSet rs=stmt.executeQuery(sql);
 					if(rs.next()) {
-						JOptionPane.showMessageDialog(null,"Login Sucessful !!");
+						//JOptionPane.showMessageDialog(null,"Login Sucessful !!");
+						frame.dispose();
+						Patients_logged pre=new Patients_logged(username.getText());
+						pre.setVisible(true);
 					}
 					else {
 						JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
@@ -124,5 +122,9 @@ public class Login {
 		});
 		btnNewButton_1.setBounds(217, 332, 189, 25);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		password = new JPasswordField();
+		password.setBounds(217, 152, 189, 22);
+		frame.getContentPane().add(password);
 	}
 }

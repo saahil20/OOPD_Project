@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import javax.swing.JPasswordField;
 
 public class Patient_registration extends JFrame {
 
@@ -23,12 +24,13 @@ public class Patient_registration extends JFrame {
 	private JTextField name;
 	private JTextField username;
 	private JTextField email;
-	private JTextField password;
 	private JTextField age;
+	private JPasswordField password;
 
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,7 +42,7 @@ public class Patient_registration extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -81,12 +83,6 @@ public class Patient_registration extends JFrame {
 		email.setBounds(240, 142, 195, 22);
 		contentPane.add(email);
 		email.setColumns(10);
-		
-		password = new JTextField();
-		password.setFont(new Font("Arial", Font.PLAIN, 15));
-		password.setBounds(239, 187, 196, 22);
-		contentPane.add(password);
-		password.setColumns(10);
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -154,5 +150,9 @@ public class Patient_registration extends JFrame {
 		lblAge.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblAge.setBounds(149, 233, 56, 16);
 		contentPane.add(lblAge);
+		
+		password = new JPasswordField();
+		password.setBounds(240, 187, 195, 22);
+		contentPane.add(password);
 	}
 }
