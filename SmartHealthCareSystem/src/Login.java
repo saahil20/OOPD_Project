@@ -185,6 +185,7 @@ public class Login {
 			con.close();
 		}catch(Exception e) {
 			System.out.println(e);
+			JOptionPane.showMessageDialog(null,e);
 		}
 	}
 }
