@@ -167,6 +167,24 @@ public class Login {
 		}
 	}
 	void doctor_login() {
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			Statement stmt=con.createStatement();
+			String sql="Select * from doctor where username='"+username.getText()+"' and password='"+password.getText()+"'";
+			ResultSet rs=stmt.executeQuery(sql);
+			if(rs.next()) {
+				JOptionPane.showMessageDialog(null,"Login Sucessful !!");
+				//frmSmartHealthcareSystem.dispose();
+				//Patients_logged pre=new Patients_logged(username.getText());
+				//pre.setVisible(true);
+			}
+			else {
+				JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
+			}
+			con.close();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 }
