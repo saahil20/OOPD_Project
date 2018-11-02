@@ -39,6 +39,7 @@ public class Patients_logged extends JFrame {
 	 */
 	
 	public Patients_logged(String user) {
+		setTitle("Smart HealthCare System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
@@ -59,33 +60,46 @@ public class Patients_logged extends JFrame {
 		userlbl.setText(user);
 		
 		JButton btnBookAppointments = new JButton("Book Appointments");
-		btnBookAppointments.setBounds(111, 148, 155, 25);
+		btnBookAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnBookAppointments.setBounds(111, 148, 170, 25);
 		contentPane.add(btnBookAppointments);
 		
 		JButton btnNewButton = new JButton("Check Avaliablity");
-		btnNewButton.setBounds(111, 197, 155, 25);
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton.setBounds(111, 197, 170, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				contentPane.setVisible(false);
 				Login.main(null);
 			}
 		});
-		btnLogout.setBounds(453, 45, 120, 25);
+		btnLogout.setBounds(427, 45, 146, 25);
 		contentPane.add(btnLogout);
 		
 		JButton btnNewButton_1 = new JButton("View Reports");
-		btnNewButton_1.setBounds(111, 247, 155, 25);
+		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton_1.setBounds(111, 247, 170, 25);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnEditProfile = new JButton("View Profile");
-		btnEditProfile.setBounds(453, 100, 120, 25);
+		btnEditProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				contentPane.setVisible(false);
+				Patient_profile pf=new Patient_profile(user);
+				pf.setVisible(true);
+			}
+		});
+		btnEditProfile.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnEditProfile.setBounds(427, 100, 146, 25);
 		contentPane.add(btnEditProfile);
 		
 		JButton btnNewButton_2 = new JButton("View Doctors");
-		btnNewButton_2.setBounds(108, 100, 158, 25);
+		btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton_2.setBounds(108, 100, 173, 25);
 		contentPane.add(btnNewButton_2);
 	}
 }

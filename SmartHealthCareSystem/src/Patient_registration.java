@@ -48,6 +48,7 @@ public class Patient_registration extends JFrame {
 	 * Create the frame.
 	 */
 	public Patient_registration() {
+		setTitle("SHS Patient Registration");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
@@ -86,7 +87,7 @@ public class Patient_registration extends JFrame {
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblName.setBounds(149, 52, 79, 16);
+		lblName.setBounds(150, 53, 79, 16);
 		contentPane.add(lblName);
 		
 		JLabel lblUsername = new JLabel("Username");
