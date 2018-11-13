@@ -72,6 +72,12 @@ public class Admin_logged extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("View Doctors");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				View_doctors vd=new View_doctors();
+				vd.setVisible(true);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton_1.setBounds(82, 149, 139, 25);
 		contentPane.add(btnNewButton_1);
