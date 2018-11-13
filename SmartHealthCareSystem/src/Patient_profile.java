@@ -59,9 +59,11 @@ public class Patient_profile extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			contentPane.setVisible(false);
-			Patients_logged pre=new Patients_logged(user);
-			pre.setVisible(true);
+			dispose();
+			//contentPane.setVisible(false);
+			//Patients_logged pre=new Patients_logged(user);
+			//pre.setVisible(true);
+			
 			}
 		});
 		btnBack.setBounds(481, 66, 97, 25);

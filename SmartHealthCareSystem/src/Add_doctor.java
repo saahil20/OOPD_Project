@@ -156,9 +156,10 @@ public class Add_doctor extends JFrame {
 		btnNewButton_1 = new JButton("Back");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
-				Admin_logged ad=new Admin_logged();
-				ad.setVisible(true);
+				dispose();
+				//contentPane.setVisible(false);
+				//Admin_logged ad=new Admin_logged();
+				//ad.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(250, 372, 195, 25);

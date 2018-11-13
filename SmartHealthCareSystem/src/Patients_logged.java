@@ -61,19 +61,20 @@ public class Patients_logged extends JFrame {
 		
 		JButton btnBookAppointments = new JButton("Book Appointments");
 		btnBookAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnBookAppointments.setBounds(111, 148, 170, 25);
+		btnBookAppointments.setBounds(111, 196, 170, 25);
 		contentPane.add(btnBookAppointments);
 		
 		JButton btnNewButton = new JButton("Check Avaliablity");
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton.setBounds(111, 197, 170, 25);
+		btnNewButton.setBounds(108, 150, 170, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane.setVisible(false);
+				dispose();
+				//contentPane.setVisible(false);
 				Login.main(null);
 			}
 		});
@@ -88,7 +89,7 @@ public class Patients_logged extends JFrame {
 		JButton btnEditProfile = new JButton("View Profile");
 		btnEditProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
+				//contentPane.setVisible(false);
 				Patient_profile pf=new Patient_profile(user);
 				pf.setVisible(true);
 			}
@@ -98,8 +99,20 @@ public class Patients_logged extends JFrame {
 		contentPane.add(btnEditProfile);
 		
 		JButton btnNewButton_2 = new JButton("View Doctors");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//View_Doctor vd=new View_Doctor(user);
+				//vd.setVisible(true);
+				
+			}
+		});
 		btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton_2.setBounds(108, 100, 173, 25);
 		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("View Appointments");
+		btnNewButton_3.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton_3.setBounds(111, 297, 170, 25);
+		contentPane.add(btnNewButton_3);
 	}
 }

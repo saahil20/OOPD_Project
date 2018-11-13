@@ -51,7 +51,8 @@ public class Admin_logged extends JFrame {
 		btnLogout.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				contentPane.setVisible(false);
+				dispose();
+				//contentPane.setVisible(false);
 				Login.main(null);
 			}
 		});
@@ -61,7 +62,7 @@ public class Admin_logged extends JFrame {
 		JButton btnNewButton = new JButton("Add Doctor");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
+				//contentPane.setVisible(false);
 				Add_doctor ad=new Add_doctor();
 				ad.setVisible(true);
 			}

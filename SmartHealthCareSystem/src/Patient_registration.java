@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 
 public class Patient_registration extends JFrame {
 
+	
 	private JPanel contentPane;
 	private JTextField name;
 	private JTextField username;
@@ -42,8 +43,8 @@ public class Patient_registration extends JFrame {
 				}
 			}
 		});
-	}*/
-
+	}
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -60,7 +61,8 @@ public class Patient_registration extends JFrame {
 		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.setVisible(false);
+				dispose();
+				//contentPane.setVisible(false);
 				Login.main(null);
 			}
 		});
@@ -125,7 +127,8 @@ public class Patient_registration extends JFrame {
 					
 					if(rs > 0) {
 						JOptionPane.showMessageDialog(null,"Registration Sucessful !!");
-						contentPane.setVisible(false);
+						dispose();
+						//contentPane.setVisible(false);
 						Login.main(null);
 					}
 					else {
