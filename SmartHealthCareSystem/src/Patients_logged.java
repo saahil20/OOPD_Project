@@ -101,8 +101,8 @@ public class Patients_logged extends JFrame {
 		JButton btnNewButton_2 = new JButton("View Doctors");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//View_Doctor vd=new View_Doctor(user);
-				//vd.setVisible(true);
+				View_doctors vd=new View_doctors();
+				vd.setVisible(true);
 				
 			}
 		});
