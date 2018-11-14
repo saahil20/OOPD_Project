@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import java.awt.Choice;
+import javax.swing.JRadioButton;
 
 public class Add_doctor extends JFrame {
 
@@ -30,6 +31,7 @@ public class Add_doctor extends JFrame {
 	private JPasswordField password;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private JTextField timing;
 
 	/**
 	 * Launch the application.
@@ -118,8 +120,16 @@ public class Add_doctor extends JFrame {
 		choice.add("Ophthalmology");
 		choice.add("Orthopaedics");
 		choice.add("Urology");
+		Choice post = new Choice();
+		post.setBounds(250, 318, 195, 22);
+		contentPane.add(post);
+		post.add("Junior Doctor");
+		post.add("Senior Doctor");
+		post.add("Specialist");
+		post.add("HOD");
 		
 		btnNewButton = new JButton("Add Doctor");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -132,13 +142,17 @@ public class Add_doctor extends JFrame {
 					String email_v = email.getText();
 					String pass = password.getText();
 					String dept=choice.getSelectedItem();
+					String time=timing.getText();
+					String pst=post.getSelectedItem();
 					
 					
-					String sql="Insert into doctor (name,username,password,email,department) VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"','"+dept+"')";
+					
+					String sql="Insert into doctor (name,username,password,email,department,timing,post) VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"','"+dept+"','"+time+"','"+pst+"')";
 					Integer rs=stmt.executeUpdate(sql);
 					
 					if(rs > 0) {
 						JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!");
+						dispose();
 						
 					}
 					else {
@@ -150,10 +164,11 @@ public class Add_doctor extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(250, 323, 195, 25);
+		btnNewButton.setBounds(250, 358, 195, 25);
 		contentPane.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -162,8 +177,31 @@ public class Add_doctor extends JFrame {
 				//ad.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(250, 372, 195, 25);
+		btnNewButton_1.setBounds(250, 395, 195, 25);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblTiming = new JLabel("Timing");
+		lblTiming.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblTiming.setBounds(160, 277, 80, 16);
+		contentPane.add(lblTiming);
+		
+		
+		
+		
+		timing = new JTextField();
+		timing.setBounds(250, 274, 195, 22);
+		contentPane.add(timing);
+		timing.setColumns(10);
+		
+		JLabel lblPost = new JLabel("Post");
+		lblPost.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblPost.setBounds(160, 318, 80, 16);
+		contentPane.add(lblPost);
+		
+		JLabel lblHhmmhhmm = new JLabel("hh:mm-hh:mm");
+		lblHhmmhhmm.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblHhmmhhmm.setBounds(457, 277, 97, 16);
+		contentPane.add(lblHhmmhhmm);
 		
 		
 	}

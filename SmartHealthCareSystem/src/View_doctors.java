@@ -86,7 +86,7 @@ public class View_doctors extends JFrame {
 					Statement stmt=con.createStatement();
 					String sql="Select name,username from doctor where department='"+choice.getSelectedItem()+"'";
 					ResultSet rs=stmt.executeQuery(sql);
-					if(rs.next()) {
+					while(rs.next()) {
 						String name=rs.getString(1);
 						String username=rs.getString(2);
 						DLM.addElement(name);
@@ -95,9 +95,7 @@ public class View_doctors extends JFrame {
 						//System.out.println(name);
 						//System.out.println(username);
 					}
-					else {
-						
-					}
+					
 					con.close();
 				}catch(Exception E) {
 					System.out.println(E);
