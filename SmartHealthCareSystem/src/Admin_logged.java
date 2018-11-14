@@ -86,5 +86,11 @@ public class Admin_logged extends JFrame {
 		btnNewButton_2.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton_2.setBounds(82, 202, 139, 25);
 		contentPane.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				View_patients vp=new View_patients();
+				vp.setVisible(true);
+			}
+		});
 	}
 }

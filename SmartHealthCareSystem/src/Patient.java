@@ -8,14 +8,15 @@ public class Patient {
 	private String email;
 	
 	// for patient id
-	static int count = 0;
+	//static int count = 0;
 	
-	Patient(String name, String phone_num, String username, String email ){
+	Patient(String name, String phone_num, String username, String email, int patient_id ){
 		this.name = name;
 		this.phone_num = phone_num;
 		this.username = username;
 		this.email = email;
-		this.patient_id = count+1;
+		this.patient_id = patient_id;
+		//this.patient_id = count+1;
 	}
 	
 	//getters 
