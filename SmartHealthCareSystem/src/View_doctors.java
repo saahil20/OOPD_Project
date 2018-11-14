@@ -23,6 +23,7 @@ import javax.swing.JList;
 public class View_doctors extends JFrame {
 
 	private JPanel contentPane;
+	JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -77,6 +78,7 @@ public class View_doctors extends JFrame {
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnNewButton_1.setVisible(true);
 				try {
 					DefaultListModel DLM= new DefaultListModel();
 					Class.forName("com.mysql.jdbc.Driver");
@@ -105,7 +107,7 @@ public class View_doctors extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton.setBounds(420, 59, 97, 25);
+		btnNewButton.setBounds(420, 59, 137, 25);
 		contentPane.add(btnNewButton);
 		
 		JButton btnBack = new JButton("Back");
@@ -115,8 +117,24 @@ public class View_doctors extends JFrame {
 			}
 		});
 		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnBack.setBounds(420, 383, 97, 25);
+		btnBack.setBounds(420, 383, 137, 25);
 		contentPane.add(btnBack);
+		
+		btnNewButton_1 = new JButton("View Profile");
+		btnNewButton_1.setVisible(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String selected="";
+				if(!list.isSelectionEmpty()) {
+					selected=list.getSelectedValue().toString();
+				}
+				//selected=list.getSelectedValue().toString();
+				System.out.print(selected);
+			}
+		});
+		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnNewButton_1.setBounds(420, 117, 137, 25);
+		contentPane.add(btnNewButton_1);
 		
 		
 	}
