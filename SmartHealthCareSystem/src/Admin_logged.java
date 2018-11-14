@@ -44,7 +44,7 @@ public class Admin_logged extends JFrame {
 		
 		JLabel lblWelcomeAdmin = new JLabel("Welcome: Admin");
 		lblWelcomeAdmin.setFont(new Font("Arial", Font.BOLD, 15));
-		lblWelcomeAdmin.setBounds(82, 37, 139, 16);
+		lblWelcomeAdmin.setBounds(82, 37, 153, 16);
 		contentPane.add(lblWelcomeAdmin);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -87,6 +87,7 @@ public class Admin_logged extends JFrame {
 		btnNewButton_2.setBounds(82, 202, 139, 25);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				View_patients vp=new View_patients();
 				vp.setVisible(true);

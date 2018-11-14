@@ -88,7 +88,7 @@ public class View_patients extends JFrame {
 		contentPane.add(jsp);
 		
 		JLabel lblPatients = new JLabel("Patients Profile");
-		lblPatients.setBounds(60, 28, 114, 15);
+		lblPatients.setBounds(60, 28, 187, 15);
 		lblPatients.setFont(new Font("Arial", Font.BOLD, 15));
 		contentPane.add(lblPatients);
 		
@@ -148,7 +148,7 @@ public class View_patients extends JFrame {
 					
 					int i = list.getSelectedIndex();
 					String search = patientUsername.get(i);
-					System.out.println(i+' '+ search);
+					//System.out.println(i+' '+ search);
 					
 					try {
 						Class.forName("com.mysql.jdbc.Driver");

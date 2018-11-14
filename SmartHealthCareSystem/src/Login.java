@@ -61,7 +61,7 @@ public class Login {
 		
 		JRadioButton rdbtnPatient = new JRadioButton("Patient");
 		rdbtnPatient.setFont(new Font("Arial", Font.PLAIN, 15));
-		rdbtnPatient.setBounds(217, 197, 77, 25);
+		rdbtnPatient.setBounds(217, 197, 108, 25);
 		frmSmartHealthcareSystem.getContentPane().add(rdbtnPatient);
 		
 		JRadioButton rdbtnDoctor = new JRadioButton("Doctor");
@@ -113,7 +113,7 @@ public class Login {
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton.setBounds(217, 294, 189, 25);
+		btnNewButton.setBounds(217, 294, 202, 25);
 		frmSmartHealthcareSystem.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New Patient Register");
@@ -126,7 +126,7 @@ public class Login {
 				
 			}
 		});
-		btnNewButton_1.setBounds(217, 332, 189, 25);
+		btnNewButton_1.setBounds(217, 332, 202, 25);
 		frmSmartHealthcareSystem.getContentPane().add(btnNewButton_1);
 		
 		password = new JPasswordField();
