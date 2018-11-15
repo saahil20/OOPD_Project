@@ -174,7 +174,10 @@ public class Login {
 			String sql="Select * from doctor where username='"+username.getText()+"' and password='"+password.getText()+"'";
 			ResultSet rs=stmt.executeQuery(sql);
 			if(rs.next()) {
-				JOptionPane.showMessageDialog(null,"Login Sucessful !!");
+				frmSmartHealthcareSystem.dispose();
+				Doctor_logged dl=new Doctor_logged(username.getText());
+				dl.setVisible(true);
+				//JOptionPane.showMessageDialog(null,"Login Sucessful !!");
 				//frmSmartHealthcareSystem.dispose();
 				//Patients_logged pre=new Patients_logged(username.getText());
 				//pre.setVisible(true);

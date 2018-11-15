@@ -68,7 +68,7 @@ public class Patient_profile extends JFrame {
 			String sql = "Select name, pid, email,age from patients where username = '"+username+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
-			while(rs.next()) {
+			if(rs.next()) {
 					this.name = rs.getString("name");
 					this.pid = rs.getInt("pid");
 					this.email = rs.getString("email");
