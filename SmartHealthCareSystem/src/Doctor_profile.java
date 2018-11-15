@@ -21,6 +21,9 @@ import java.awt.event.ActionEvent;
 public class Doctor_profile extends JFrame {
 	String doc;
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -43,6 +46,7 @@ public class Doctor_profile extends JFrame {
 	 */
 	public Doctor_profile(String doc) {
 		this.doc=doc;
+		System.out.println(doc);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
@@ -95,25 +99,12 @@ public class Doctor_profile extends JFrame {
 		username.setBounds(203, 77, 162, 16);
 		contentPane.add(username);
 		
-		JLabel email = new JLabel("");
-		email.setFont(new Font("Arial", Font.PLAIN, 15));
-		email.setBounds(203, 113, 162, 16);
-		contentPane.add(email);
-		
-		JLabel phone = new JLabel("");
-		phone.setFont(new Font("Arial", Font.PLAIN, 15));
-		phone.setBounds(203, 146, 162, 16);
-		contentPane.add(phone);
-		
+				
 		JLabel department = new JLabel("");
 		department.setFont(new Font("Arial", Font.PLAIN, 15));
 		department.setBounds(203, 179, 162, 16);
 		contentPane.add(department);
 		
-		JLabel timing = new JLabel("");
-		timing.setFont(new Font("Arial", Font.PLAIN, 15));
-		timing.setBounds(203, 217, 162, 16);
-		contentPane.add(timing);
 		
 		JLabel post = new JLabel("");
 		post.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -127,13 +118,72 @@ public class Doctor_profile extends JFrame {
 			}
 		});
 		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnBack.setBounds(457, 373, 119, 25);
+		btnBack.setBounds(462, 334, 119, 25);
 		contentPane.add(btnBack);
 		
-		JButton btnEdit = new JButton("Edit");
-		btnEdit.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnEdit.setBounds(457, 335, 119, 25);
-		contentPane.add(btnEdit);
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnUpdate.setBounds(322, 334, 119, 25);
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				boolean flag = true;
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					Statement stmt = con.createStatement();
+					
+					//get existing emails and mobile
+					
+					String sql2 = "Select email,phone from doctor"; // 
+					ResultSet rs2 = stmt.executeQuery(sql2);
+					
+					while(rs2.next()) {
+						//System.out.println(rs2.getString("email")+' '+textField.getText());
+							if(textField.getText().equals(rs2.getString("email")) || textField_1.getText().equals(rs2.getString("phone")) ) {
+								flag = false;
+							}
+						}
+
+					//update if flag is true
+					if(flag) {
+						//Temporary query
+						//String sql = "UPDATE patients set email='"+textField.getText()+"' where username = '"+username+"'";
+						
+						//Original query :  Uncomment below line after updating database
+						String sql = "UPDATE doctor set email='"+textField.getText()+"', phone='"+textField_1.getText()+"', timing='"+textField_2.getText()+"' where username = '"+doc+"'";
+						
+						stmt.executeUpdate(sql);
+						JOptionPane.showMessageDialog(null,"Updated Successfully!");
+
+					} else {
+						JOptionPane.showMessageDialog(null,"That email or mobile already exist!");
+					}
+					con.close();
+				} catch(Exception E) {
+					System.out.println(E);
+					JOptionPane.showMessageDialog(null,E);
+				}				
+			}
+		});
+		contentPane.add(btnUpdate);
+		
+		textField = new JTextField();
+		textField.setBounds(203, 112, 175, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(203, 145, 124, 19);
+		contentPane.add(textField_1);
+
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(203, 216, 124, 19);
+		contentPane.add(textField_2);
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -145,10 +195,10 @@ public class Doctor_profile extends JFrame {
 			if(rs.next()) {
 					name.setText(rs.getString("name"));
 					username.setText(rs.getString("username"));
-					email.setText(rs.getString("email"));
-					phone.setText(rs.getString("phone"));
+					textField.setText(rs.getString("email"));
+					textField_1.setText(rs.getString("phone"));
 					department.setText(rs.getString("department"));
-					timing.setText(rs.getString("timing"));
+					textField_2.setText(rs.getString("timing"));
 					post.setText(rs.getString("post"));
 														
 				}
@@ -159,5 +209,4 @@ public class Doctor_profile extends JFrame {
 		}
 		
 	}
-
 }
