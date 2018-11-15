@@ -90,6 +90,7 @@ public class Patient_profile extends JFrame {
 		contentPane.add(lblProfile);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -103,12 +104,12 @@ public class Patient_profile extends JFrame {
 		
 		JLabel lblPatientId = new JLabel("PID");
 		lblPatientId.setFont(new Font("Dialog", Font.BOLD, 15));
-		lblPatientId.setBounds(51, 102, 58, 16);
+		lblPatientId.setBounds(51, 99, 58, 16);
 		contentPane.add(lblPatientId);
 		
 		JLabel lblAge = new JLabel("Age");
 		lblAge.setFont(new Font("Dialog", Font.BOLD, 15));
-		lblAge.setBounds(51, 130, 58, 16);
+		lblAge.setBounds(51, 128, 58, 16);
 		contentPane.add(lblAge);
 		
 		JLabel lblEmail = new JLabel("Email");
@@ -127,32 +128,32 @@ public class Patient_profile extends JFrame {
 		contentPane.add(lblCritical);
 		
 		JLabel label_1 = new JLabel("");		//PId
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_1.setBounds(159, 103, 121, 16);
+		label_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_1.setBounds(159, 103, 167, 16);
 		contentPane.add(label_1);
 		label_1.setText(Integer.toString(pid));
 		
 		JLabel label = new JLabel("");		//age
-		label.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label.setBounds(159, 130, 121, 16);
+		label.setFont(new Font("Arial", Font.PLAIN, 15));
+		label.setBounds(159, 130, 167, 16);
 		contentPane.add(label);
 		label.setText(Integer.toString(age));
 		
 		JLabel label_2 = new JLabel("");		//username
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_2.setBounds(159, 187, 121, 16);
+		label_2.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_2.setBounds(159, 187, 167, 16);
 		contentPane.add(label_2);
 		label_2.setText(username);
 		
 		JLabel label_3 = new JLabel(""); 		// critical
-		label_3.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_3.setBounds(159, 215, 121, 16);
+		label_3.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_3.setBounds(159, 215, 167, 16);
 		contentPane.add(label_3);
 		label_3.setText(critical);
 		
 		JLabel label_4 = new JLabel("");  // name
-		label_4.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_4.setBounds(159, 71, 121, 16);
+		label_4.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_4.setBounds(159, 71, 167, 16);
 		contentPane.add(label_4);
 		label_4.setText(name);
 		
@@ -162,8 +163,8 @@ public class Patient_profile extends JFrame {
 		contentPane.add(lblLocationl);
 				
 		JLabel label_5 = new JLabel("");  //location
-		label_5.setFont(new Font("Dialog", Font.PLAIN, 15));
-		label_5.setBounds(159, 243, 121, 16);
+		label_5.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_5.setBounds(159, 243, 167, 16);
 		contentPane.add(label_5);
 		label_5.setText(location);
 
@@ -174,18 +175,21 @@ public class Patient_profile extends JFrame {
 		contentPane.add(lblPhoneNo);
 		
 		textField = new JTextField();
-		textField.setBounds(156, 157, 124, 19);
+		textField.setFont(new Font("Arial", Font.PLAIN, 13));
+		textField.setBounds(156, 157, 170, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		textField.setText(email);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(159, 271, 124, 19);
+		textField_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		textField_1.setBounds(159, 271, 167, 19);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setText(mobile);
 		
 		JButton btnSave = new JButton("Update");
+		btnSave.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnSave.setBounds(376, 331, 97, 25);
 		contentPane.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
