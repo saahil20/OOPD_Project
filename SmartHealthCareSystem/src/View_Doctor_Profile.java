@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Doctor_profile extends JFrame {
+public class View_Doctor_Profile extends JFrame {
 	String doc;
 	private JPanel contentPane;
 
@@ -41,7 +41,7 @@ public class Doctor_profile extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Doctor_profile(String doc) {
+	public View_Doctor_Profile(String doc) {
 		this.doc=doc;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
@@ -130,16 +130,11 @@ public class Doctor_profile extends JFrame {
 		btnBack.setBounds(457, 373, 119, 25);
 		contentPane.add(btnBack);
 		
-		JButton btnEdit = new JButton("Edit");
-		btnEdit.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnEdit.setBounds(457, 335, 119, 25);
-		contentPane.add(btnEdit);
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
 			Statement stmt=con.createStatement();
-			String sql = "Select name,username,email,phone,department,timing,post from doctor where username = '"+this.doc+"'";
+			String sql = "Select name,username,email,phone,department,timing,post from doctor where name = '"+this.doc+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {

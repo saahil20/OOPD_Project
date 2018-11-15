@@ -125,6 +125,8 @@ public class View_doctors extends JFrame {
 				String selected="";
 				if(!list.isSelectionEmpty()) {
 					selected=list.getSelectedValue().toString();
+					View_Doctor_Profile dp = new View_Doctor_Profile(selected);
+					dp.setVisible(true);
 				}
 				//selected=list.getSelectedValue().toString();
 				System.out.print(selected);
