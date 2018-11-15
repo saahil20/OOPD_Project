@@ -59,7 +59,15 @@ public class Patients_logged extends JFrame {
 		this.user=user;
 		userlbl.setText(user);
 		
-		JButton btnBookAppointments = new JButton("Book Appointments");
+		JButton btnBookAppointments = new JButton("Need an Appointment?");
+		btnBookAppointments.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				ViewDoc_ForAppointment vda = new ViewDoc_ForAppointment(user);
+				vda.setVisible(true);
+				
+			}
+		});
 		btnBookAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnBookAppointments.setBounds(111, 196, 170, 25);
 		contentPane.add(btnBookAppointments);
