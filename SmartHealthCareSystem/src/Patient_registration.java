@@ -111,8 +111,7 @@ public class Patient_registration extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					Connection con=ConnectDB.getConnection();
 					Statement stmt=con.createStatement();
 					//String sql="Select * from patients where username='"+username.getText()+"' and password='"+password.getText()+"'";
 					//ResultSet rs=stmt.executeQuery(sql);

@@ -60,14 +60,23 @@ public class ViewDoc_ForAppointment extends JFrame {
 		Choice choice = new Choice();
 		choice.setBounds(199, 59, 195, 22);
 		contentPane.add(choice);
-		choice.add("OPD");
-		choice.add("Cardiology");
-		choice.add("ENT");
-		choice.add("Gastroenterology");
-		choice.add("Gynaecology");
-		choice.add("Ophthalmology");
-		choice.add("Orthopaedics");
-		choice.add("Urology");
+		
+		try {	
+			Connection con=ConnectDB.getConnection();
+			Statement stmt=con.createStatement();
+			String sql="Select dept_name from departments";
+			ResultSet rs=stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				System.out.println(rs.getString("dept_name"));
+				choice.add(rs.getString("dept_name"));
+			}
+			
+			con.close();
+		 }catch(Exception e) {
+			System.out.println(e);
+		}
+
 		
 		JLabel lblSelectDepartment = new JLabel("Select Department");
 		lblSelectDepartment.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -86,8 +95,8 @@ public class ViewDoc_ForAppointment extends JFrame {
 				try {
 					DefaultListModel DLM= new DefaultListModel();
 										
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					
+					Connection con=ConnectDB.getConnection();
 					Statement stmt=con.createStatement();
 					String sql="Select name,username, timing from doctor where department='"+choice.getSelectedItem()+"'";
 					ResultSet rs=stmt.executeQuery(sql);
@@ -139,9 +148,11 @@ public class ViewDoc_ForAppointment extends JFrame {
 				if(!list.isSelectionEmpty()) {
 					doc_usr=list.getSelectedValue().toString();
 					try {
+
 						
 						Class.forName("com.mysql.jdbc.Driver");
 						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+
 						Statement stmt=con.createStatement();
 						String sql="Select id from doctor where name='"+doc_usr+"'";
 						ResultSet rs=stmt.executeQuery(sql);

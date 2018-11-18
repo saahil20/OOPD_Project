@@ -136,8 +136,8 @@ public class Login {
 	
 	void patient_login() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql="Select * from patients where username='"+username.getText()+"' and password='"+password.getText()+"'";
 			ResultSet rs=stmt.executeQuery(sql);
@@ -168,8 +168,8 @@ public class Login {
 	}
 	void doctor_login() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql="Select * from doctor where username='"+username.getText()+"' and password='"+password.getText()+"'";
 			ResultSet rs=stmt.executeQuery(sql);

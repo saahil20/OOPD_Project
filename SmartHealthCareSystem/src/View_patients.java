@@ -60,8 +60,8 @@ public class View_patients extends JFrame {
 		
 		try {
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql = "Select username,name from patients";
 			ResultSet rs = stmt.executeQuery(sql);
@@ -151,8 +151,8 @@ public class View_patients extends JFrame {
 					//System.out.println(i+' '+ search);
 					
 					try {
-						Class.forName("com.mysql.jdbc.Driver");
-						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+						
+						Connection con=ConnectDB.getConnection();
 						Statement stmt=con.createStatement();
 						String sql = "Select pid,name,email,age from patients where username='"+search+"'";
 						
