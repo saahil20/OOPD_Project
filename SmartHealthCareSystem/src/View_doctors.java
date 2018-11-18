@@ -129,7 +129,7 @@ public class View_doctors extends JFrame {
 					dp.setVisible(true);
 				}
 				//selected=list.getSelectedValue().toString();
-				System.out.print(selected);
+				//System.out.print(selected);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));

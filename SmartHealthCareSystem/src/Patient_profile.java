@@ -74,9 +74,7 @@ public class Patient_profile extends JFrame {
 					this.email = rs.getString("email");
 					this.age = rs.getInt("age");
 					// update database right now default
-					location = "LOCAL";
-					mobile = "007";
-					critical = "No";								
+					;								
 				}
 			con.close();
 		} catch(Exception E) {

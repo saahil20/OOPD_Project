@@ -24,8 +24,10 @@ public class ViewDoc_ForAppointment extends JFrame {
 
 	private JPanel contentPane;
 	JButton btnNewButton_1;
-	private String patient_username;
-	private static String selectedDoctor;
+	String pat_usr;
+	String doc_usr;
+	int id;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +49,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 	 */
 	public ViewDoc_ForAppointment(String user) {
 		
-		this.patient_username = user;
+		this.pat_usr= user;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
@@ -74,13 +76,8 @@ public class ViewDoc_ForAppointment extends JFrame {
 		
 		JList list = new JList();
 		list.setFont(new Font("Arial", Font.PLAIN, 15));
-		list.setBounds(55, 136, 175, 213);
+		list.setBounds(55, 136, 252, 213);
 		contentPane.add(list);
-		
-		JList list_1 = new JList();
-		list_1.setFont(new Font("Dialog", Font.PLAIN, 15));
-		list_1.setBounds(267, 136, 175, 213);
-		contentPane.add(list_1);
 		
 		JButton btnNewButton = new JButton("Search");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -96,10 +93,10 @@ public class ViewDoc_ForAppointment extends JFrame {
 					ResultSet rs=stmt.executeQuery(sql);
 					while(rs.next()) {
 						String name=rs.getString("name");
+						
 						String username=rs.getString("username");
-						String timing = rs.getString("timing");
-						//String completeStr = name+" "+rs.getString("timing");
-						//DLM.addElement(completeStr);
+						
+						
 						DLM.addElement(name);
 						list.setModel(DLM);
 												
@@ -128,56 +125,43 @@ public class ViewDoc_ForAppointment extends JFrame {
 		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnBack.setBounds(420, 383, 137, 25);
 		contentPane.add(btnBack);
+	
 		
-		list.addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
-								
-				DefaultListModel DLM2= new DefaultListModel();
+		
+	
 
-				if(arg0.getValueIsAdjusting() == false) {
-			
-					ViewDoc_ForAppointment.selectedDoctor  = list.getSelectedValue().toString();
-					//doc name is unique : get timing
+	
+		btnNewButton_1 = new JButton("Proceed");
+		btnNewButton_1.setVisible(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(!list.isSelectionEmpty()) {
+					doc_usr=list.getSelectedValue().toString();
 					try {
-																	
+						
 						Class.forName("com.mysql.jdbc.Driver");
 						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
 						Statement stmt=con.createStatement();
-						String sql="Select timing from doctor where name='"+ViewDoc_ForAppointment.selectedDoctor+"'";
+						String sql="Select id from doctor where name='"+doc_usr+"'";
 						ResultSet rs=stmt.executeQuery(sql);
-						while(rs.next()) {
-							String timing = rs.getString("timing");
-							DLM2.addElement(timing);
-							list_1.setModel(DLM2);				
+						if(rs.next()) {
+							id = rs.getInt("id");
+										
 						}						
 						con.close();
 					}catch(Exception E) {
 						System.out.println(E);
-						JOptionPane.showMessageDialog(null,E);
-					}			
-
-				}
-			}
-			
-		});
-		
-		
-	
-
-	
-		btnNewButton_1 = new JButton("Book Appointment");
-		btnNewButton_1.setVisible(false);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String selectedDoc = ViewDoc_ForAppointment.selectedDoctor;
-				if(!selectedDoc.equals("")) {
-					Book_Appointment bookapt = new Book_Appointment(ViewDoc_ForAppointment.selectedDoctor,  patient_username);
+						
+					}	
+					
+					
+					
+					Book_Appointment bookapt = new Book_Appointment(doc_usr,  pat_usr, id);
 					bookapt.setVisible(true);
+					dispose();
 				}
-				//selected=list.getSelectedValue().toString();
-				//System.out.print(ViewDoc_ForAppointment.bookingDetails);
+				
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -188,13 +172,13 @@ public class ViewDoc_ForAppointment extends JFrame {
 		
 		JLabel lblDoctors = new JLabel("Doctors");
 		lblDoctors.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblDoctors.setBounds(55, 109, 66, 15);
+		lblDoctors.setBounds(69, 107, 66, 15);
 		contentPane.add(lblDoctors);
 		
-		JLabel lblTimings = new JLabel("Timings");
-		lblTimings.setFont(new Font("Dialog", Font.PLAIN, 15));
-		lblTimings.setBounds(265, 109, 66, 15);
-		contentPane.add(lblTimings);
+		JLabel lblSelectDoctor = new JLabel("Select Doctor");
+		lblSelectDoctor.setFont(new Font("Arial Black", Font.PLAIN, 15));
+		lblSelectDoctor.setBounds(55, 13, 137, 16);
+		contentPane.add(lblSelectDoctor);
 		
 	}
 }
