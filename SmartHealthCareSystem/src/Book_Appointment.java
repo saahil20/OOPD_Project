@@ -160,9 +160,6 @@ public class Book_Appointment extends JFrame {
 					if(v.equals("Slot 4"))
 						choosen='d';
 					//String sql = "UPDATE patients set email='"+textField.getText()+"', mobile='"+textField_1.getText()+"' where username = '"+username+"'";
-					String sql = "UPDATE doc_avaliablity set "+choosen+"=0";
-					
-					stmt.executeUpdate(sql);
 					
 					
 					int ch=0;
@@ -173,7 +170,7 @@ public class Book_Appointment extends JFrame {
 					case 'd':ch=4;break;
 					}
 					
-					sql = "SELECT pid from patients where username='"+patientUserName+"'";
+					String sql = "SELECT pid from patients where username='"+patientUserName+"'";
 					ResultSet rs  = stmt.executeQuery(sql);
 					int patientID=0;
 					if(rs.next()) {
@@ -184,6 +181,11 @@ public class Book_Appointment extends JFrame {
 					//System.out.println(currD);
 					String sql1 = "INSERT into appointments (did,pid,date,slot) VALUES ('"+id+"','"+patientID+"','"+currD+"','"+ch+"')";
 					stmt.executeUpdate(sql1);
+					
+					sql = "UPDATE doc_avaliablity set "+choosen+"=0";
+					
+					stmt.executeUpdate(sql);
+					
 					con.close();
 					dispose();
 				}catch(Exception E) {
