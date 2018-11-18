@@ -131,8 +131,8 @@ public class View_Doctor_Profile extends JFrame {
 		contentPane.add(btnBack);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql = "Select name,username,email,phone,department,timing,post from doctor where name = '"+this.doc+"'";
 			ResultSet rs = stmt.executeQuery(sql);

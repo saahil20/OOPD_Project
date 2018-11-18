@@ -62,8 +62,8 @@ public class Patient_profile extends JFrame {
 		contentPane.setLayout(null);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql = "Select name, pid, email,age from patients where username = '"+username+"'";
 			ResultSet rs = stmt.executeQuery(sql);
@@ -198,8 +198,8 @@ public class Patient_profile extends JFrame {
 				boolean flag = true;
 				
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					
+					Connection con = ConnectDB.getConnection();
 					Statement stmt = con.createStatement();
 					
 					//get existing emails and mobile

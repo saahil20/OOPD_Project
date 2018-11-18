@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 15, 2018 at 10:24 AM
+-- Host: localhost
+-- Generation Time: Nov 18, 2018 at 02:23 PM
 -- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,6 +37,25 @@ CREATE TABLE `appointments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `dept_id` int(11) NOT NULL,
+  `dept_name` varchar(100) NOT NULL,
+  `hod_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`dept_id`, `dept_name`, `hod_id`) VALUES
+(1, 'Cardiology', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `doctor`
 --
 
@@ -46,6 +65,7 @@ CREATE TABLE `doctor` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
   `department` varchar(50) NOT NULL,
   `timing` varchar(20) NOT NULL,
   `post` varchar(20) NOT NULL
@@ -55,10 +75,10 @@ CREATE TABLE `doctor` (
 -- Dumping data for table `doctor`
 --
 
-INSERT INTO `doctor` (`id`, `name`, `username`, `password`, `email`, `department`, `timing`, `post`) VALUES
-(2, 'Jayant Barve', 'jbarve', 'jayant', 'javant@gmail.com', 'Gastroenterology', '14:00-18:00', 'Specialist'),
-(3, 'Saumil Shah', 'saumil', 'saumil', 'saumil@gmail.com', 'Gastroenterology', '10:00-14:00', 'Senior Doctor'),
-(5, 'Rohan Gurve', 'rohan', 'rohan', 'rohan@gmail.com', 'Cardiology', '12:00-15:00', 'Senior Doctor');
+INSERT INTO `doctor` (`id`, `name`, `username`, `password`, `email`, `phone`, `department`, `timing`, `post`) VALUES
+(2, 'Jayant Barve', 'jbarve', 'jayant', 'javant@gmail.com', '', 'Gastroenterology', '14:00-18:00', 'Specialist'),
+(3, 'Saumil Shah', 'saumil', 'saumil', 'saumil@gmail.com', '', 'Gastroenterology', '10:00-14:00', 'Senior Doctor'),
+(5, 'Rohan Gurve', 'rohan', 'rohan', 'rk@gmail.com', '234234', 'Cardiology', '12:00-123210', 'Senior Doctor');
 
 -- --------------------------------------------------------
 
@@ -84,7 +104,7 @@ CREATE TABLE `patients` (
 INSERT INTO `patients` (`pid`, `name`, `username`, `password`, `email`, `age`, `phone`, `location`) VALUES
 (1, 'Saahil Shah', 'saahil20', 'saahil20', 'saahilshah48@gmail.com', 22, '8108468012', 'OPD'),
 (2, 'Peter', 'pete', '9789', 'heisblack2234@gmail.com', 12, '1234987645', 'OPD'),
-(3, 'harsh parikh', 'harsh', 'harshp', 'harsh@gmail.com', 22, '987654321', 'OPD'),
+(3, 'harsh parikh', 'harsh', 'harshp', 'hrsh23@gmail.com', 22, '987654321', 'OPD'),
 (4, 'Rohan Gurve', 'rohan127', 'rohan127', 'rohan@gmail.com', 22, '567488321', 'OPD'),
 (5, 'Harsh Parikh', 'parick', 'parick', 'harsh@gmail.com', 22, '7345453712', 'OPD');
 
@@ -142,6 +162,12 @@ ALTER TABLE `appointments`
   ADD KEY `pid` (`pid`);
 
 --
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`dept_id`);
+
+--
 -- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
@@ -182,10 +208,16 @@ ALTER TABLE `reports`
 --
 
 --
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `dept_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `patients`

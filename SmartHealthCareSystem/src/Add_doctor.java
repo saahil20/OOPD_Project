@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
@@ -32,6 +33,7 @@ public class Add_doctor extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JTextField timing;
+	private JTextField phoneField;
 
 	/**
 	 * Launch the application.
@@ -107,21 +109,30 @@ public class Add_doctor extends JFrame {
 		
 		JLabel lblDepartment = new JLabel("Department");
 		lblDepartment.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblDepartment.setBounds(159, 227, 80, 16);
+		lblDepartment.setBounds(159, 249, 80, 16);
 		contentPane.add(lblDepartment);
 		Choice choice = new Choice();
-		choice.setBounds(250, 227, 195, 22);
+		choice.setBounds(250, 243, 195, 22);
 		contentPane.add(choice);
-		choice.add("OPD");
-		choice.add("Cardiology");
-		choice.add("ENT");
-		choice.add("Gastroenterology");
-		choice.add("Gynaecology");
-		choice.add("Ophthalmology");
-		choice.add("Orthopaedics");
-		choice.add("Urology");
+		
+		try {	
+			Connection con=ConnectDB.getConnection();
+			Statement stmt=con.createStatement();
+			String sql="Select dept_name from departments";
+			ResultSet rs=stmt.executeQuery(sql);
+			
+			while(rs.next()) {
+				System.out.println(rs.getString("dept_name"));
+				choice.add(rs.getString("dept_name"));
+			}
+			
+			con.close();
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+
 		Choice post = new Choice();
-		post.setBounds(250, 318, 195, 22);
+		post.setBounds(250, 330, 195, 22);
 		contentPane.add(post);
 		post.add("Junior Doctor");
 		post.add("Senior Doctor");
@@ -133,8 +144,8 @@ public class Add_doctor extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					
+					Connection con=ConnectDB.getConnection();
 					Statement stmt=con.createStatement();
 					
 					String name_v = name.getText();
@@ -144,27 +155,52 @@ public class Add_doctor extends JFrame {
 					String dept=choice.getSelectedItem();
 					String time=timing.getText();
 					String pst=post.getSelectedItem();
+					String phone = phoneField.getText();
 					
+					// get dept id
+					int flag = 0;
 					
-					
-					String sql="Insert into doctor (name,username,password,email,department,timing,post) VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"','"+dept+"','"+time+"','"+pst+"')";
-					Integer rs=stmt.executeUpdate(sql);
-					
-					if(rs > 0) {
-						JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!");
-						dispose();
+					// check if for given dept hod_id is null or not
+					try {	
+						String sql="Select hod_id from departments where dept_name='"+dept+"'";
+						ResultSet rs=stmt.executeQuery(sql);
 						
+						 
+						if(rs.next()) {
+							System.out.println(rs.getString("hod_id"));
+							if(rs.getString("hod_id") == null) {
+								flag = 1;
+							}
+						}
+						
+					}catch(Exception e) {
+						System.out.println(e);
 					}
-					else {
-						JOptionPane.showMessageDialog(null,"Doctor Not Added");
+					
+					if((flag == 1) || !pst.equals("HOD")) {
+						String sql="Insert into doctor (name,username,password,email,department,timing,post,phone) "
+								+ " VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"','"+dept+"','"+time+"','"+pst+"','"+phone+"')";
+						
+						Integer rs=stmt.executeUpdate(sql);
+						if(rs > 0) {		
+							JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!");
+							dispose();
+							con.close();
+						}
+						else {
+							JOptionPane.showMessageDialog(null,"Doctor Not Added");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, dept+" HOD already filled, select something else!");
 					}
-					con.close();
+
+				
 				}catch(Exception e) {
 					System.out.println(e);
 				}
 			}
 		});
-		btnNewButton.setBounds(250, 358, 195, 25);
+		btnNewButton.setBounds(489, 361, 139, 25);
 		contentPane.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Back");
@@ -177,31 +213,41 @@ public class Add_doctor extends JFrame {
 				//ad.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(250, 395, 195, 25);
+		btnNewButton_1.setBounds(499, 398, 119, 25);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblTiming = new JLabel("Timing");
 		lblTiming.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblTiming.setBounds(160, 277, 80, 16);
+		lblTiming.setBounds(160, 289, 80, 16);
 		contentPane.add(lblTiming);
 		
 		
 		
 		
 		timing = new JTextField();
-		timing.setBounds(250, 274, 195, 22);
+		timing.setBounds(250, 287, 195, 22);
 		contentPane.add(timing);
 		timing.setColumns(10);
 		
 		JLabel lblPost = new JLabel("Post");
 		lblPost.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblPost.setBounds(160, 318, 80, 16);
+		lblPost.setBounds(159, 336, 80, 16);
 		contentPane.add(lblPost);
 		
 		JLabel lblHhmmhhmm = new JLabel("hh:mm-hh:mm");
 		lblHhmmhhmm.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblHhmmhhmm.setBounds(457, 277, 97, 16);
 		contentPane.add(lblHhmmhhmm);
+		
+		JLabel lblPhone = new JLabel("Phone");
+		lblPhone.setFont(new Font("Dialog", Font.PLAIN, 15));
+		lblPhone.setBounds(161, 212, 78, 16);
+		contentPane.add(lblPhone);
+		
+		phoneField = new JTextField();
+		phoneField.setFont(new Font("Dialog", Font.PLAIN, 15));
+		phoneField.setBounds(250, 211, 195, 22);
+		contentPane.add(phoneField);
 		
 		
 	}

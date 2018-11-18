@@ -84,8 +84,8 @@ public class Book_Appointment extends JFrame {
 		
 		try {
 			
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql="Select timing from doctor where name='"+docName+"'";
 			ResultSet rs=stmt.executeQuery(sql);

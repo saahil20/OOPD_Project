@@ -131,8 +131,8 @@ public class Doctor_profile extends JFrame {
 				// TODO Auto-generated method stub
 				boolean flag = true;
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					
+					Connection con = ConnectDB.getConnection();
 					Statement stmt = con.createStatement();
 					
 					//get existing emails and mobile
@@ -186,8 +186,8 @@ public class Doctor_profile extends JFrame {
 		contentPane.add(textField_2);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql = "Select name,username,email,phone,department,timing,post from doctor where username = '"+this.doc+"'";
 			ResultSet rs = stmt.executeQuery(sql);
