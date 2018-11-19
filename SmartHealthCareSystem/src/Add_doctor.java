@@ -122,7 +122,6 @@ public class Add_doctor extends JFrame {
 			ResultSet rs=stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("dept_name"));
 				choice.add(rs.getString("dept_name"));
 			}
 			
@@ -167,7 +166,7 @@ public class Add_doctor extends JFrame {
 						
 						 
 						if(rs.next()) {
-							System.out.println(rs.getString("hod_id"));
+					
 							if(rs.getString("hod_id") == null) {
 								flag = 1;
 							}
@@ -178,18 +177,45 @@ public class Add_doctor extends JFrame {
 					}
 					
 					if((flag == 1) || !pst.equals("HOD")) {
+						
+						int doc_id = 0; 
 						String sql="Insert into doctor (name,username,password,email,department,timing,post,phone) "
 								+ " VALUES ('"+name_v+"','"+username_v+"','"+pass+"','"+email_v+"','"+dept+"','"+time+"','"+pst+"','"+phone+"')";
 						
 						Integer rs=stmt.executeUpdate(sql);
-						if(rs > 0) {		
-							JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!");
-							dispose();
-							con.close();
+						
+						if(pst.equals("HOD")) { 
+							 
+							String sql3 = "Select id from doctor where username='"+username_v+"'"; 
+							ResultSet rs3 = stmt.executeQuery(sql3); 
+							 
+							if(rs3.next()) { 
+								doc_id = rs3.getInt("id"); 
+							} 
+						 
+														 
+							String sql4="Update departments set hod_id='"+doc_id+"' where dept_name='"+dept+"'"; 
+							 
+							Integer rs4=stmt.executeUpdate(sql4); 
+							if(rs4 > 0) {		 
+								JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!"); 
+								dispose(); 
+								con.close(); 
+							} 
+							else { 
+								JOptionPane.showMessageDialog(null,"Doctor Not Added"); 
+							} 
+						} else {
+							if(rs > 0) {		
+								JOptionPane.showMessageDialog(null,"Doctor Added Sucessfully !!");
+								dispose();
+								con.close();
+							}
+							else {
+								JOptionPane.showMessageDialog(null,"Doctor Not Added");
+							}
 						}
-						else {
-							JOptionPane.showMessageDialog(null,"Doctor Not Added");
-						}
+							
 					} else {
 						JOptionPane.showMessageDialog(null, dept+" HOD already filled, select something else!");
 					}

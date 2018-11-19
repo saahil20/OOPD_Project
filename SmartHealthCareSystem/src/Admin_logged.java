@@ -93,5 +93,20 @@ public class Admin_logged extends JFrame {
 				vp.setVisible(true);
 			}
 		});
+		
+		JButton btnNewButton_3 = new JButton("Add Department"); 
+		btnNewButton_3.setBounds(82, 251, 139, 25); 
+		btnNewButton_3.setFont(new Font("Arial", Font.PLAIN, 15)); 
+		contentPane.add(btnNewButton_3); 
+		btnNewButton_3.addActionListener(new ActionListener() { 
+			 
+			@Override 
+			public void actionPerformed(ActionEvent arg0) { 
+				// TODO Auto-generated method stub 
+				Add_Department addDept = new Add_Department(); 
+				addDept.setVisible(true); 
+			} 
+		}); 
+		
 	}
 }
