@@ -68,7 +68,6 @@ public class ViewDoc_ForAppointment extends JFrame {
 			ResultSet rs=stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("dept_name"));
 				choice.add(rs.getString("dept_name"));
 			}
 			
