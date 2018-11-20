@@ -5,14 +5,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class Doc_Appointment_Select extends JFrame {
 
 	private JPanel contentPane;
+	int pid,did,slot;
+	String pname,date;
 
 	/**
 	 * Launch the application.
@@ -42,6 +48,7 @@ public class Doc_Appointment_Select extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -72,6 +79,46 @@ public class Doc_Appointment_Select extends JFrame {
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNewLabel.setBounds(94, 130, 135, 16);
 		contentPane.add(lblNewLabel);
+		
+		try {
+			
+			Connection con=ConnectDB.getConnection();
+			Statement stmt=con.createStatement();
+			String sql = "Select did,pid,date,slot from appointment where aid = '"+aid+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+					did=rs.getInt("did");
+					pid=rs.getInt("pid");
+					date=rs.getString("date");
+					slot=rs.getInt("slot");
+				}
+			
+			con.close();
+		} catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
+			JOptionPane.showMessageDialog(null,E);
+		}
+		label.setText(date);
+		lblNewLabel.setText(Integer.toString(slot));
+		
+try {
+			
+			Connection con=ConnectDB.getConnection();
+			Statement stmt=con.createStatement();
+			String sql = "Select name from patients where pid = '"+pid+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+					pname=rs.getString("name");
+					plabel.setText(pname);
+				}
+			
+			con.close();
+		} catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
+			JOptionPane.showMessageDialog(null,E);
+		}
+		
+		
 		
 		JButton btnCreateReport = new JButton("Create Report");
 		btnCreateReport.addActionListener(new ActionListener() {
