@@ -162,7 +162,7 @@ public class Doctor_profile extends JFrame {
 						JOptionPane.showMessageDialog(null,"That email or mobile already exist!");
 					}
 					con.close();
-				} catch(Exception E) {
+				} catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}				
@@ -203,7 +203,7 @@ public class Doctor_profile extends JFrame {
 														
 				}
 			con.close();
-		} catch(Exception E) {
+		} catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}

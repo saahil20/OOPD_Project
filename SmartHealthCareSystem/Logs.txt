@@ -1,0 +1,9 @@
+
+2018.11.20 18:46:58 : com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2018.11.20 18:46:58 : java.lang.NullPointerException
+2018.11.20 18:47:09 : com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2018.11.20 18:47:09 : java.lang.NullPointerException

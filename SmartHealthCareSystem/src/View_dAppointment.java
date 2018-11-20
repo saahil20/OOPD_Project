@@ -9,20 +9,20 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
 
-public class View_pAppointment extends JFrame {
+public class View_dAppointment extends JFrame {
 
 	private JPanel contentPane;
-	String name;
-	int id;
 	int did;
+	int pid;
+	String dname;
+	String pname;
 	String display;
 	/**
 	 * Launch the application.
@@ -32,7 +32,7 @@ public class View_pAppointment extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					View_pAppointment frame = new View_pAppointment();
+					View_dAppointment frame = new View_dAppointment();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,8 +44,8 @@ public class View_pAppointment extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public View_pAppointment(String user) {
-		setTitle("Patient Appointments");
+	public View_dAppointment(String docu) {
+		setTitle("Apointments");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 480);
 		contentPane = new JPanel();
@@ -53,20 +53,25 @@ public class View_pAppointment extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblDoctor = new JLabel("Doctor");
+		lblDoctor.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblDoctor.setBounds(49, 13, 56, 16);
+		contentPane.add(lblDoctor);
+		
 		JLabel label = new JLabel("");
 		label.setBounds(104, 13, 218, 16);
 		contentPane.add(label);
 		
-		try {
+try {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select pid,name from patients where username = '"+user+"'";
+			String sql = "Select id,name from doctor where username = '"+docu+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs.next()) {
-					id=rs.getInt("pid");
-					name=rs.getString("name");
-					label.setText(name);
+					did=rs.getInt("id");
+					dname=rs.getString("name");
+					label.setText(dname);
 				}
 			
 			con.close();
@@ -75,14 +80,29 @@ public class View_pAppointment extends JFrame {
 			JOptionPane.showMessageDialog(null,E);
 		}
 		
-		JLabel lblPatient = new JLabel("Patient:");
-		lblPatient.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblPatient.setBounds(43, 14, 56, 16);
-		contentPane.add(lblPatient);
+		JLabel label_1 = new JLabel("Appointments");
+		label_1.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_1.setBounds(49, 66, 89, 16);
+		contentPane.add(label_1);
+		
+		JLabel lblPatientName = new JLabel("Patient Name");
+		lblPatientName.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblPatientName.setBounds(93, 95, 89, 16);
+		contentPane.add(lblPatientName);
+		
+		JLabel label_3 = new JLabel("Date");
+		label_3.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_3.setBounds(225, 95, 35, 16);
+		contentPane.add(label_3);
+		
+		JLabel label_4 = new JLabel("Slot");
+		label_4.setFont(new Font("Arial", Font.PLAIN, 15));
+		label_4.setBounds(291, 95, 35, 16);
+		contentPane.add(label_4);
 		
 		JList list = new JList();
 		list.setFont(new Font("Arial", Font.PLAIN, 15));
-		list.setBounds(43, 119, 499, 188);
+		list.setBounds(49, 118, 499, 188);
 		contentPane.add(list);
 		DefaultListModel DLM= new DefaultListModel();
 		
@@ -90,23 +110,24 @@ public class View_pAppointment extends JFrame {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select did,date,slot from appointment where pid = '"+id+"'";
+			String sql = "Select pid,date,slot from appointment where did = '"+did+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 					//System.out.println("1");
-					did=rs.getInt("did");
+					pid=rs.getInt("pid");
 					String date=rs.getString("date");
 					String slot=rs.getString("slot");
-					label.setText(name);
+					
 					//System.out.println("2");
 					Statement stmt1=con.createStatement();
-					String sql1="Select name from doctor where id = '"+did+"'";
+					String sql1="Select name from patients where pid = '"+pid+"'";
 					ResultSet rs1=stmt1.executeQuery(sql1);
 					//System.out.println("3");
 					if(rs1.next()) {
 						//System.out.println("4");
 						String docname=rs1.getString("name");
-						display=docname+"      "+date+"         "+slot;
+						String id=Integer.toString(pid);
+						display=id+"        "+docname+"      "+date+"         "+slot;
 						DLM.addElement(display);
 						
 					}
@@ -123,34 +144,20 @@ public class View_pAppointment extends JFrame {
 		
 		
 		
-		JLabel lblAppointments = new JLabel("Appointments");
-		lblAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblAppointments.setBounds(43, 67, 89, 16);
-		contentPane.add(lblAppointments);
-		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton button = new JButton("Back");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(445, 382, 97, 25);
-		contentPane.add(btnNewButton);
+		button.setFont(new Font("Arial", Font.PLAIN, 15));
+		button.setBounds(451, 381, 97, 25);
+		contentPane.add(button);
 		
-		JLabel lblDoctorName = new JLabel("Doctor Name");
-		lblDoctorName.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblDoctorName.setBounds(43, 96, 89, 16);
-		contentPane.add(lblDoctorName);
-		
-		JLabel lblDate = new JLabel("Date");
-		lblDate.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblDate.setBounds(153, 96, 42, 16);
-		contentPane.add(lblDate);
-		
-		JLabel lblSlot = new JLabel("Slot");
-		lblSlot.setFont(new Font("Arial", Font.PLAIN, 15));
-		lblSlot.setBounds(207, 96, 42, 16);
-		contentPane.add(lblSlot);
+		JLabel lblId = new JLabel("  ID");
+		lblId.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblId.setBounds(44, 95, 26, 16);
+		contentPane.add(lblId);
 	}
+
 }

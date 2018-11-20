@@ -148,7 +148,7 @@ public class View_Doctor_Profile extends JFrame {
 														
 				}
 			con.close();
-		} catch(Exception E) {
+		} catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}

@@ -72,8 +72,8 @@ public class ViewDoc_ForAppointment extends JFrame {
 			}
 			
 			con.close();
-		 }catch(Exception e) {
-			System.out.println(e);
+		 }catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
 		}
 
 		
@@ -112,7 +112,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 					}
 					
 					con.close();
-				}catch(Exception E) {
+				}catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}							
@@ -160,7 +160,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 										
 						}						
 						con.close();
-					}catch(Exception E) {
+					}catch(Exception E){ Login.ex.logException(E);
 						System.out.println(E);
 						
 					}	

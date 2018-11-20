@@ -71,7 +71,7 @@ public class View_patients extends JFrame {
 				patientUsername.add(rs.getString("username"));
 				}
 			con.close();
-		}catch(Exception E) {
+		}catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}
@@ -168,7 +168,7 @@ public class View_patients extends JFrame {
 							}
 						
 						con.close();
-					}catch(Exception E) {
+					}catch(Exception E){ Login.ex.logException(E);
 						System.out.println(E);
 						JOptionPane.showMessageDialog(null,E);
 					}

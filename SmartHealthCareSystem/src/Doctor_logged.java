@@ -68,6 +68,13 @@ public class Doctor_logged extends JFrame {
 		contentPane.add(btnLogout);
 		
 		JButton btnNewButton = new JButton("View Appontments");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				View_dAppointment vdp=new View_dAppointment(doc);
+				vdp.setVisible(true);
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton.setBounds(36, 102, 173, 25);
 		contentPane.add(btnNewButton);

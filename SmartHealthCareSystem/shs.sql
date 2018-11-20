@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `appointments`
+-- Table structure for table `appointment`
 --
 
-CREATE TABLE `appointments` (
+CREATE TABLE `appointment` (
   `did` int(5) NOT NULL,
   `pid` int(5) NOT NULL,
   `date` date NOT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `appointments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `appointments`
+-- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointments` (`did`, `pid`, `date`, `slot`) VALUES
+INSERT INTO `appointment` (`did`, `pid`, `date`, `slot`) VALUES
 (14, 1, '2018-11-16', 2);
 
 -- --------------------------------------------------------
@@ -146,9 +146,9 @@ CREATE TABLE `reports` (
 --
 
 --
--- Indexes for table `appointments`
+-- Indexes for table `appointment`
 --
-ALTER TABLE `appointments`
+ALTER TABLE `appointment`
   ADD UNIQUE KEY `did` (`did`),
   ADD UNIQUE KEY `pid` (`pid`);
 
@@ -215,11 +215,11 @@ ALTER TABLE `reports`
 --
 
 --
--- Constraints for table `appointments`
+-- Constraints for table `appointment`
 --
-ALTER TABLE `appointments`
-  ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`did`) REFERENCES `doctor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `patients` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`did`) REFERENCES `doctor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`pid`) REFERENCES `patients` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient_consulted`
