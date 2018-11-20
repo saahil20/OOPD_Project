@@ -98,6 +98,7 @@ public class Admin_logged extends JFrame {
 		btnNewButton_3.setBounds(82, 251, 139, 25); 
 		btnNewButton_3.setFont(new Font("Arial", Font.PLAIN, 15)); 
 		contentPane.add(btnNewButton_3); 
+		
 		btnNewButton_3.addActionListener(new ActionListener() { 
 			 
 			@Override 
@@ -107,6 +108,21 @@ public class Admin_logged extends JFrame {
 				addDept.setVisible(true); 
 			} 
 		}); 
+		
+		JButton btnNewButton_4 = new JButton("Reassignment");
+		btnNewButton_4.setBounds(82, 288, 145, 25);
+		btnNewButton_4.setFont(new Font("Arial", Font.PLAIN, 15)); 
+		contentPane.add(btnNewButton_4);
+		
+		btnNewButton_4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		
 		
 	}
 }

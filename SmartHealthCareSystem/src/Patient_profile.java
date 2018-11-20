@@ -30,6 +30,7 @@ public class Patient_profile extends JFrame {
 	private int pid;
 	private String mobile;
 	private String critical; 
+	private String uqid;
 	
 	/**
 	 * Launch the application.
@@ -65,7 +66,7 @@ public class Patient_profile extends JFrame {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select name, pid, email,age from patients where username = '"+username+"'";
+			String sql = "Select patient_id,name, pid, phone, email,age,location from patients where username = '"+username+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {
@@ -73,6 +74,9 @@ public class Patient_profile extends JFrame {
 					this.pid = rs.getInt("pid");
 					this.email = rs.getString("email");
 					this.age = rs.getInt("age");
+					this.mobile = rs.getString("phone");
+					this.location = rs.getString("location");
+					this.uqid = rs.getString("patient_id");
 					// update database right now default
 					;								
 				}
@@ -202,34 +206,41 @@ public class Patient_profile extends JFrame {
 					Connection con = ConnectDB.getConnection();
 					Statement stmt = con.createStatement();
 					
-					//get existing emails and mobile
+					//get existing emails and phone
 					
-					String sql2 = "Select email from patients"; // mobile to be added
+					String sql2 = "Select username,email,phone from patients"; // mobile to be added
 					ResultSet rs2 = stmt.executeQuery(sql2);
 					
 					while(rs2.next()) {
 						//System.out.println(rs2.getString("email")+' '+textField.getText());
 							if(textField.getText().equals(rs2.getString("email"))) {
-								flag = false;
+								if(!rs2.getString("username").equals(username)) {
+									flag = false;
+								}	
+							}
+							
+							
+							if(textField_1.getText().equals(rs2.getString("phone"))) {
+								if(!rs2.getString("username").equals(username)) {
+									flag = false;
+								}	
 							}
 						}
 
 					//update if flag is true
 					if(flag) {
-						//Temporary query
-						String sql = "UPDATE patients set email='"+textField.getText()+"' where username = '"+username+"'";
-						
-						//Original query :  Uncomment below line after updating database
-						//String sql = "UPDATE patients set email='"+textField.getText()+"', mobile='"+textField_1.getText()+"' where username = '"+username+"'";
+					
+						String sql = "UPDATE patients set email='"+textField.getText()+"', phone='"+textField_1.getText()+"' where username = '"+username+"'";
 						
 						stmt.executeUpdate(sql);
 						JOptionPane.showMessageDialog(null,"Updated Successfully!");
 
 					} else {
-						JOptionPane.showMessageDialog(null,"That email already exist!");
+						JOptionPane.showMessageDialog(null,"That email or mobile already exist!");
 					}
 					con.close();
-				} catch(Exception E){ Login.ex.logException(E);
+				} catch(Exception E){
+					//Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}				
