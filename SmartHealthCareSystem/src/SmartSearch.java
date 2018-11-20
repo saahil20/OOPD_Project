@@ -44,39 +44,48 @@ public class SmartSearch extends JFrame {
 		contentPane.setLayout(null);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Constipation");
+		chckbxNewCheckBox.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxNewCheckBox.setBounds(37, 125, 113, 25);
 		contentPane.add(chckbxNewCheckBox);
 		
 		JCheckBox chckbxIrregularBowel = new JCheckBox("Irregular Bowel");
+		chckbxIrregularBowel.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxIrregularBowel.setBounds(164, 125, 117, 25);
 		contentPane.add(chckbxIrregularBowel);
 		
 		JCheckBox chckbxBlood = new JCheckBox("Rectal Bleeding");
+		chckbxBlood.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxBlood.setBounds(302, 125, 122, 25);
 		contentPane.add(chckbxBlood);
 		
 		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Chest Pain");
+		chckbxNewCheckBox_1.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxNewCheckBox_1.setBounds(37, 198, 113, 25);
 		contentPane.add(chckbxNewCheckBox_1);
 	
 		
 		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Palpitations");
+		chckbxNewCheckBox_2.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxNewCheckBox_2.setBounds(164, 198, 113, 25);
 		contentPane.add(chckbxNewCheckBox_2);
 		
 		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Heart-burn");
+		chckbxNewCheckBox_3.setFont(new Font("Arial", Font.PLAIN, 15));
 		chckbxNewCheckBox_3.setBounds(302, 198, 113, 25);
 		contentPane.add(chckbxNewCheckBox_3);
 		
 		JLabel lblNotFoundYour = new JLabel("Not Found your Symptom ?");
+		lblNotFoundYour.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNotFoundYour.setBounds(40, 362, 162, 39);
 		contentPane.add(lblNotFoundYour);
 		
 		JButton btnClickHere = new JButton("Click here");
+		btnClickHere.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnClickHere.setBounds(204, 369, 97, 25);
 		contentPane.add(btnClickHere);
 		
 		JButton btnGetADoctor = new JButton("Get A Suggestion");
+		btnGetADoctor.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnGetADoctor.addActionListener(new ActionListener() {
 			int sO=0,sC=0;
 			public void actionPerformed(ActionEvent e) {
@@ -118,6 +127,7 @@ public class SmartSearch extends JFrame {
 		contentPane.add(lblSelectOneOr);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

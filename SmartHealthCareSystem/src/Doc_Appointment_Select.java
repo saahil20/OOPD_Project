@@ -123,6 +123,9 @@ try {
 		JButton btnCreateReport = new JButton("Create Report");
 		btnCreateReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Create_Report cr= new Create_Report(did,pid,date);
+				cr.setVisible(true);
+				
 				
 			}
 		});
@@ -133,7 +136,7 @@ try {
 		JButton btnDeleteAppointment = new JButton("Delete Appointment");
 		btnDeleteAppointment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Deleted");
+				//System.out.println("Deleted");
 			}
 		});
 		btnDeleteAppointment.setFont(new Font("Arial", Font.PLAIN, 15));
