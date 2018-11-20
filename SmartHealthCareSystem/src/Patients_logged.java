@@ -5,10 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class Patients_logged extends JFrame {
@@ -57,7 +63,25 @@ public class Patients_logged extends JFrame {
 		userlbl.setBounds(192, 46, 146, 16);
 		contentPane.add(userlbl);
 		this.user=user;
-		userlbl.setText(user);
+		//userlbl.setText(user);
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=ConnectDB.getConnection();
+			Statement stmt=con.createStatement();
+			String sql = "Select name from patients where username = '"+user+"'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) {
+					
+					String name=rs.getString("name");
+					userlbl.setText(name);
+				}
+			
+			con.close();
+		} catch(Exception E) {
+			System.out.println(E);
+			JOptionPane.showMessageDialog(null,E);
+		}
 		
 		JButton btnBookAppointments = new JButton("Need an Appointment?");
 		btnBookAppointments.addActionListener(new ActionListener() {
@@ -119,6 +143,13 @@ public class Patients_logged extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("View Appointments");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				View_pAppointment vp=new View_pAppointment(user);
+				vp.setVisible(true);
+				
+			}
+		});
 		btnNewButton_3.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton_3.setBounds(111, 297, 170, 25);
 		contentPane.add(btnNewButton_3);

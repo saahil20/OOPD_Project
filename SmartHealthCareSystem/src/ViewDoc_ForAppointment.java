@@ -151,7 +151,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 
 						
 						Class.forName("com.mysql.jdbc.Driver");
-						Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+						Connection con=ConnectDB.getConnection();
 
 						Statement stmt=con.createStatement();
 						String sql="Select id from doctor where name='"+doc_usr+"'";

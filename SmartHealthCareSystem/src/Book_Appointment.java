@@ -106,8 +106,8 @@ public class Book_Appointment extends JFrame {
 		contentPane.add(choice);
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+			
+			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
 			String sql = "Select * from doc_avaliablity where id = '"+this.id+"'";
 			ResultSet rs = stmt.executeQuery(sql);
@@ -147,7 +147,7 @@ public class Book_Appointment extends JFrame {
 				try {
 					
 					Class.forName("com.mysql.jdbc.Driver");
-					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/shs","root","");
+					Connection con=ConnectDB.getConnection();
 					Statement stmt=con.createStatement();
 					String v = choice.getSelectedItem();
 					char choosen='\0';

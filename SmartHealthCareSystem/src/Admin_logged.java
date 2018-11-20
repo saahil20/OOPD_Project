@@ -103,7 +103,7 @@ public class Admin_logged extends JFrame {
 			@Override 
 			public void actionPerformed(ActionEvent arg0) { 
 				// TODO Auto-generated method stub 
-				Add_Department addDept = new Add_Department(); 
+				Add_department addDept = new Add_department(); 
 				addDept.setVisible(true); 
 			} 
 		}); 

@@ -4,9 +4,9 @@ import java.lang.ClassNotFoundException;
 
 
 public class ConnectDB {
-	private static String url = "jdbc:mysql://localhost:3306/shs";
+	private static String url = "jdbc:mysql://192.168.51.199:3306/shs";
 	private static String username = "root";
-	private static String password = "";
+	private static String password = "root";
 	private static Connection con;
 		
 	public static Connection getConnection() {
