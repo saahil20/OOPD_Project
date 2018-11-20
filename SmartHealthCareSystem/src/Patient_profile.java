@@ -20,16 +20,17 @@ import javax.swing.JTextField;
 public class Patient_profile extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField emailtxt;
+	private JTextField phonetxt;
 	private String name;
 	private String username;
 	private String email;
 	private int age;
 	private String location;
-	private int pid;
+	private String pid;
 	private String mobile;
 	private String critical; 
+	int patient_id;
 	
 	/**
 	 * Launch the application.
@@ -65,19 +66,26 @@ public class Patient_profile extends JFrame {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select name, pid, email,age from patients where username = '"+username+"'";
+			String sql = "Select patient_id,name,email,age,phone,location from patients where username = '"+username+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			if(rs.next()) {
+				
 					this.name = rs.getString("name");
-					this.pid = rs.getInt("pid");
+					pid = rs.getString("patient_id");
 					this.email = rs.getString("email");
 					this.age = rs.getInt("age");
+					mobile=rs.getString("phone");
+					location=rs.getString("location");
+					
+					
+					
+					
 					// update database right now default
-					;								
+												
 				}
 			con.close();
-		} catch(Exception E){ Login.ex.logException(E);
+		} catch(Exception E){ //Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}
@@ -115,56 +123,45 @@ public class Patient_profile extends JFrame {
 		lblEmail.setBounds(51, 158, 58, 16);
 		contentPane.add(lblEmail);
 		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Dialog", Font.BOLD, 15));
-		lblUsername.setBounds(51, 186, 97, 16);
-		contentPane.add(lblUsername);
-		
 		JLabel lblCritical = new JLabel("Critical");
 		lblCritical.setFont(new Font("Dialog", Font.BOLD, 15));
 		lblCritical.setBounds(51, 214, 91, 16);
 		contentPane.add(lblCritical);
 		
-		JLabel label_1 = new JLabel("");		//PId
-		label_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		label_1.setBounds(159, 103, 167, 16);
-		contentPane.add(label_1);
-		label_1.setText(Integer.toString(pid));
+		JLabel patientid = new JLabel("");		//PId
+		patientid.setFont(new Font("Arial", Font.PLAIN, 15));
+		patientid.setBounds(159, 103, 167, 16);
+		contentPane.add(patientid);
+		patientid.setText(pid);
 		
-		JLabel label = new JLabel("");		//age
-		label.setFont(new Font("Arial", Font.PLAIN, 15));
-		label.setBounds(159, 130, 167, 16);
-		contentPane.add(label);
-		label.setText(Integer.toString(age));
+		JLabel agelbl = new JLabel("");		//age
+		agelbl.setFont(new Font("Arial", Font.PLAIN, 15));
+		agelbl.setBounds(159, 130, 167, 16);
+		contentPane.add(agelbl);
+		agelbl.setText(Integer.toString(age));
 		
-		JLabel label_2 = new JLabel("");		//username
-		label_2.setFont(new Font("Arial", Font.PLAIN, 15));
-		label_2.setBounds(159, 187, 167, 16);
-		contentPane.add(label_2);
-		label_2.setText(username);
+		JLabel criticaltxt = new JLabel(""); 		// critical
+		criticaltxt.setFont(new Font("Arial", Font.PLAIN, 15));
+		criticaltxt.setBounds(159, 215, 167, 16);
+		contentPane.add(criticaltxt);
+		criticaltxt.setText("NO");
 		
-		JLabel label_3 = new JLabel(""); 		// critical
-		label_3.setFont(new Font("Arial", Font.PLAIN, 15));
-		label_3.setBounds(159, 215, 167, 16);
-		contentPane.add(label_3);
-		label_3.setText(critical);
-		
-		JLabel label_4 = new JLabel("");  // name
-		label_4.setFont(new Font("Arial", Font.PLAIN, 15));
-		label_4.setBounds(159, 71, 167, 16);
-		contentPane.add(label_4);
-		label_4.setText(name);
+		JLabel namelbl = new JLabel("");  // name
+		namelbl.setFont(new Font("Arial", Font.PLAIN, 15));
+		namelbl.setBounds(159, 71, 167, 16);
+		contentPane.add(namelbl);
+		namelbl.setText(name);
 		
 		JLabel lblLocationl = new JLabel("Location");	
 		lblLocationl.setFont(new Font("Dialog", Font.BOLD, 15));
 		lblLocationl.setBounds(51, 242, 91, 16);
 		contentPane.add(lblLocationl);
 				
-		JLabel label_5 = new JLabel("");  //location
-		label_5.setFont(new Font("Arial", Font.PLAIN, 15));
-		label_5.setBounds(159, 243, 167, 16);
-		contentPane.add(label_5);
-		label_5.setText(location);
+		JLabel locationlbl = new JLabel("");  //location
+		locationlbl.setFont(new Font("Arial", Font.PLAIN, 15));
+		locationlbl.setBounds(159, 243, 167, 16);
+		contentPane.add(locationlbl);
+		locationlbl.setText(location);
 
 		
 		JLabel lblPhoneNo = new JLabel("Phone No.");
@@ -172,19 +169,19 @@ public class Patient_profile extends JFrame {
 		lblPhoneNo.setBounds(51, 270, 91, 16);
 		contentPane.add(lblPhoneNo);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 13));
-		textField.setBounds(156, 157, 170, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		textField.setText(email);
+		emailtxt = new JTextField();
+		emailtxt.setFont(new Font("Arial", Font.PLAIN, 13));
+		emailtxt.setBounds(156, 157, 170, 19);
+		contentPane.add(emailtxt);
+		emailtxt.setColumns(10);
+		emailtxt.setText(email);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		textField_1.setBounds(159, 271, 167, 19);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		textField_1.setText(mobile);
+		phonetxt = new JTextField();
+		phonetxt.setFont(new Font("Arial", Font.PLAIN, 15));
+		phonetxt.setBounds(159, 271, 167, 19);
+		contentPane.add(phonetxt);
+		phonetxt.setColumns(10);
+		phonetxt.setText(mobile);
 		
 		JButton btnSave = new JButton("Update");
 		btnSave.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -209,7 +206,7 @@ public class Patient_profile extends JFrame {
 					
 					while(rs2.next()) {
 						//System.out.println(rs2.getString("email")+' '+textField.getText());
-							if(textField.getText().equals(rs2.getString("email"))) {
+							if(emailtxt.getText().equals(rs2.getString("email"))) {
 								flag = false;
 							}
 						}
@@ -217,7 +214,7 @@ public class Patient_profile extends JFrame {
 					//update if flag is true
 					if(flag) {
 						//Temporary query
-						String sql = "UPDATE patients set email='"+textField.getText()+"' where username = '"+username+"'";
+						String sql = "UPDATE patients set email='"+emailtxt.getText()+"' where username = '"+username+"'";
 						
 						//Original query :  Uncomment below line after updating database
 						//String sql = "UPDATE patients set email='"+textField.getText()+"', mobile='"+textField_1.getText()+"' where username = '"+username+"'";
