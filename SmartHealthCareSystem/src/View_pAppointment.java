@@ -87,7 +87,7 @@ public class View_pAppointment extends JFrame {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select did,date,slot from appointments where pid = '"+id+"'";
+			String sql = "Select did,date,slot from appointment where pid = '"+id+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 					//System.out.println("1");

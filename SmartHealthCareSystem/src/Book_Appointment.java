@@ -179,7 +179,7 @@ public class Book_Appointment extends JFrame {
 					
 					String currD = java.time.LocalDate.now().toString();
 					//System.out.println(currD);
-					String sql1 = "INSERT into appointments (did,pid,date,slot) VALUES ('"+id+"','"+patientID+"','"+currD+"','"+ch+"')";
+					String sql1 = "INSERT into appointment (did,pid,date,slot) VALUES ('"+id+"','"+patientID+"','"+currD+"','"+ch+"')";
 					stmt.executeUpdate(sql1);
 					
 					sql = "UPDATE doc_avaliablity set "+choosen+"=0";
