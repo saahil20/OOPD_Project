@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.SwingConstants;
 
 public class ViewDoc_ForAppointment extends JFrame {
 
@@ -189,6 +190,23 @@ public class ViewDoc_ForAppointment extends JFrame {
 		lblSelectDoctor.setFont(new Font("Arial Black", Font.PLAIN, 15));
 		lblSelectDoctor.setBounds(55, 13, 137, 16);
 		contentPane.add(lblSelectDoctor);
+		
+		JButton btnGetYourDoctor = new JButton("Get A Suggestion !");
+		btnGetYourDoctor.setVerticalAlignment(SwingConstants.TOP);
+		btnGetYourDoctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SmartSearch ob = new SmartSearch();
+				ob.setVisible(true);
+			}
+		});
+		btnGetYourDoctor.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnGetYourDoctor.setBounds(362, 169, 237, 25);
+		contentPane.add(btnGetYourDoctor);
+		
+		JLabel lblNotSureAbout = new JLabel("Not Sure about the doctor ? ");
+		lblNotSureAbout.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblNotSureAbout.setBounds(387, 138, 195, 16);
+		contentPane.add(lblNotSureAbout);
 		
 	}
 }

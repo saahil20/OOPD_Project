@@ -24,6 +24,7 @@ public class View_dAppointment extends JFrame {
 	String dname;
 	String pname;
 	String display;
+	int aid;
 	/**
 	 * Launch the application.
 	 */
@@ -59,6 +60,7 @@ public class View_dAppointment extends JFrame {
 		contentPane.add(lblDoctor);
 		
 		JLabel label = new JLabel("");
+		label.setFont(new Font("Arial", Font.PLAIN, 15));
 		label.setBounds(104, 13, 218, 16);
 		contentPane.add(label);
 		
@@ -110,10 +112,11 @@ try {
 			
 			Connection con=ConnectDB.getConnection();
 			Statement stmt=con.createStatement();
-			String sql = "Select pid,date,slot from appointment where did = '"+did+"'";
+			String sql = "Select aid,pid,date,slot from appointment where did = '"+did+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 					//System.out.println("1");
+					aid=rs.getInt("aid");
 					pid=rs.getInt("pid");
 					String date=rs.getString("date");
 					String slot=rs.getString("slot");
@@ -126,7 +129,7 @@ try {
 					if(rs1.next()) {
 						//System.out.println("4");
 						String docname=rs1.getString("name");
-						String id=Integer.toString(pid);
+						String id=Integer.toString(aid);
 						display=id+"        "+docname+"      "+date+"         "+slot;
 						DLM.addElement(display);
 						
@@ -158,6 +161,26 @@ try {
 		lblId.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblId.setBounds(44, 95, 26, 16);
 		contentPane.add(lblId);
+		
+		JButton btnSelectAppointment = new JButton("Select Appointment");
+		btnSelectAppointment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selected="";
+				if(!list.isSelectionEmpty()) {
+					selected=list.getSelectedValue().toString();
+					int aid=Integer.parseInt(selected.substring(0, 1));
+					//System.out.print(aid);
+					Doc_Appointment_Select das=new Doc_Appointment_Select(aid);
+					das.setVisible(true);
+					
+					
+					
+				}
+			}
+		});
+		btnSelectAppointment.setFont(new Font("Arial", Font.PLAIN, 15));
+		btnSelectAppointment.setBounds(49, 381, 195, 25);
+		contentPane.add(btnSelectAppointment);
 	}
 
 }
