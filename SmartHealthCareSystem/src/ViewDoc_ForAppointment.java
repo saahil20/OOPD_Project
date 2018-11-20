@@ -191,12 +191,12 @@ public class ViewDoc_ForAppointment extends JFrame {
 		lblSelectDoctor.setBounds(55, 13, 137, 16);
 		contentPane.add(lblSelectDoctor);
 		
-		JButton btnGetYourDoctor = new JButton("Get your doctor algorithmically !");
-		btnGetYourDoctor.setHorizontalAlignment(SwingConstants.LEFT);
+		JButton btnGetYourDoctor = new JButton("Get A Suggestion !");
 		btnGetYourDoctor.setVerticalAlignment(SwingConstants.TOP);
 		btnGetYourDoctor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				SmartSearch ob = new SmartSearch();
+				ob.setVisible(true);
 			}
 		});
 		btnGetYourDoctor.setFont(new Font("Arial", Font.PLAIN, 15));
