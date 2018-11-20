@@ -25,7 +25,7 @@ public class LogException {
 			//System.out.println(new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Timestamp(System.currentTimeMillis())) + " : " + ex);
 			writer.write("\n" + new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Timestamp(System.currentTimeMillis())) + " : " + ex);
 			writer.close();
-		}catch(Exception E) {
+		}catch(Exception E){ Login.ex.logException(E);
 			System.out.println("PPP" + E);
 		}
 		

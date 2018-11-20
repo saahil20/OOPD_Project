@@ -78,7 +78,7 @@ public class Patients_logged extends JFrame {
 				}
 			
 			con.close();
-		} catch(Exception E) {
+		} catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}

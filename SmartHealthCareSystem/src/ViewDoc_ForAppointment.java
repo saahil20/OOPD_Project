@@ -68,13 +68,13 @@ public class ViewDoc_ForAppointment extends JFrame {
 			ResultSet rs=stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				System.out.println(rs.getString("dept_name"));
+				//System.out.println(rs.getString("dept_name"));
 				choice.add(rs.getString("dept_name"));
 			}
 			
 			con.close();
-		 }catch(Exception e) {
-			System.out.println(e);
+		 }catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
 		}
 
 		
@@ -113,7 +113,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 					}
 					
 					con.close();
-				}catch(Exception E) {
+				}catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}							
@@ -161,7 +161,7 @@ public class ViewDoc_ForAppointment extends JFrame {
 										
 						}						
 						con.close();
-					}catch(Exception E) {
+					}catch(Exception E){ Login.ex.logException(E);
 						System.out.println(E);
 						
 					}	

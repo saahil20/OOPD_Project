@@ -70,8 +70,8 @@ public class View_doctors extends JFrame {
 			}
 			
 			con.close();
-		}catch(Exception e) {
-			System.out.println(e);
+		}catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
 		}
 		
 		JLabel lblSelectDepartment = new JLabel("Select Department");
@@ -97,7 +97,7 @@ public class View_doctors extends JFrame {
 					ResultSet rs=stmt.executeQuery(sql);
 					while(rs.next()) {
 						String name=rs.getString(1);
-						String username=rs.getString(2);
+						//String username=rs.getString(2);
 						DLM.addElement(name);
 						list.setModel(DLM);
 						
@@ -106,7 +106,7 @@ public class View_doctors extends JFrame {
 					}
 					
 					con.close();
-				}catch(Exception E) {
+				}catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}

@@ -77,7 +77,7 @@ public class Patient_profile extends JFrame {
 					;								
 				}
 			con.close();
-		} catch(Exception E) {
+		} catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}
@@ -227,7 +227,7 @@ public class Patient_profile extends JFrame {
 						JOptionPane.showMessageDialog(null,"That email already exist!");
 					}
 					con.close();
-				} catch(Exception E) {
+				} catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}				

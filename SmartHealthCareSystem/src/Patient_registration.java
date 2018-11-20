@@ -134,8 +134,8 @@ public class Patient_registration extends JFrame {
 						JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
 					}
 					con.close();
-				}catch(Exception e) {
-					System.out.println(e);
+				}catch(Exception E){ Login.ex.logException(E);
+					System.out.println(E);
 				}
 			}
 		});

@@ -126,8 +126,8 @@ public class Add_doctor extends JFrame {
 			}
 			
 			con.close();
-		}catch(Exception e) {
-			System.out.println(e);
+		}catch(Exception E){ Login.ex.logException(E);
+			System.out.println(E);
 		}
 
 		Choice post = new Choice();
@@ -172,8 +172,8 @@ public class Add_doctor extends JFrame {
 							}
 						}
 						
-					}catch(Exception e) {
-						System.out.println(e);
+					}catch(Exception E){ Login.ex.logException(E);
+						System.out.println(E);
 					}
 					
 					if((flag == 1) || !pst.equals("HOD")) {
@@ -221,8 +221,8 @@ public class Add_doctor extends JFrame {
 					}
 
 				
-				}catch(Exception e) {
-					System.out.println(e);
+				}catch(Exception E){ Login.ex.logException(E);
+					System.out.println(E);
 				}
 			}
 		});

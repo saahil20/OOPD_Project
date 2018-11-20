@@ -19,6 +19,7 @@ public class Login {
 	private JFrame frmSmartHealthcareSystem;
 	private JTextField username;
 	private JPasswordField password;
+	static LogException ex;
 
 	/**
 	 * Launch the application.
@@ -30,6 +31,7 @@ public class Login {
 					Login window = new Login();
 					window.frmSmartHealthcareSystem.setVisible(true);
 				} catch (Exception e) {
+					ex.logException(e);
 					e.printStackTrace();
 				}
 			}
@@ -151,8 +153,9 @@ public class Login {
 				JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
 			}
 			con.close();
-		}catch(Exception e) {
-			System.out.println(e);
+		}catch(Exception E){ Login.ex.logException(E);
+			ex.logException(E);
+			System.out.println(E);
 		}
 	}
 	void admin_login() {
@@ -186,9 +189,10 @@ public class Login {
 				JOptionPane.showMessageDialog(null,"Incorrect Login Credentials");
 			}
 			con.close();
-		}catch(Exception e) {
-			System.out.println(e);
-			JOptionPane.showMessageDialog(null,e);
+		}catch(Exception E){ Login.ex.logException(E);
+			ex.logException(E);
+			System.out.println(E);
+			JOptionPane.showMessageDialog(null,E);
 		}
 	}
 }

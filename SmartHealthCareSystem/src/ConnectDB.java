@@ -14,12 +14,12 @@ public class ConnectDB {
 			Class.forName("com.mysql.jdbc.Driver");
 			//try {
 			con = DriverManager.getConnection(url, username, password);	
-		//	} catch(Exception e) {
-				//System.out.println(e);
+		//	} catch(Exception E){ Login.ex.logException(E);
+				//System.out.println(E);
 			//}
-		} catch(Exception e) {
-			Login.ex.logException(e);
-			System.out.println("sfjvbsk" + e);
+		} catch(Exception E){ Login.ex.logException(E);
+			Login.ex.logException(E);
+			System.out.println(E);
 		}
 		return con;
 	}

@@ -130,7 +130,7 @@ public class Book_Appointment extends JFrame {
 				}
 			
 			con.close();
-		} catch(Exception E) {
+		} catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}
@@ -188,7 +188,7 @@ public class Book_Appointment extends JFrame {
 					
 					con.close();
 					dispose();
-				}catch(Exception E) {
+				}catch(Exception E){ Login.ex.logException(E);
 					System.out.println(E);
 					JOptionPane.showMessageDialog(null,E);
 				}
@@ -211,7 +211,7 @@ public class Book_Appointment extends JFrame {
 				label_1.setText(rs.getString("name"));
 			}						
 			con.close();
-		}catch(Exception E) {
+		}catch(Exception E){ Login.ex.logException(E);
 			System.out.println(E);
 			JOptionPane.showMessageDialog(null,E);
 		}			

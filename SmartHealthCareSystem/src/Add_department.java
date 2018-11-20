@@ -110,15 +110,15 @@ public class Add_department extends JFrame {
  							} else {
  								JOptionPane.showMessageDialog(null,"Department not added.");
  							}			
- 						} catch(Exception e) {
- 							System.out.println(e);
+ 						} catch(Exception E){ Login.ex.logException(E);
+ 							System.out.println(E);
  						}
 
  					} else {
  						JOptionPane.showMessageDialog(null, "Department already exists!");
  					}
 										
-				} catch(Exception e) {
+				} catch(Exception E){ Login.ex.logException(E);
 					System.out.println("Connection to database failed!");
 				}
 ;			}
