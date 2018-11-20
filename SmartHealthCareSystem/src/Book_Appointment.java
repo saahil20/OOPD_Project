@@ -182,7 +182,7 @@ public class Book_Appointment extends JFrame {
 					String sql1 = "INSERT into appointment (did,pid,date,slot) VALUES ('"+id+"','"+patientID+"','"+currD+"','"+ch+"')";
 					stmt.executeUpdate(sql1);
 					
-					sql = "UPDATE doc_avaliablity set "+choosen+"=0";
+					sql = "UPDATE doc_avaliablity set "+choosen+"=0 where id='"+id+"'";
 					
 					stmt.executeUpdate(sql);
 					

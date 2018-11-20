@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class View_pAppointment extends JFrame {
 
@@ -75,10 +76,12 @@ public class View_pAppointment extends JFrame {
 		}
 		
 		JLabel lblPatient = new JLabel("Patient:");
-		lblPatient.setBounds(43, 13, 56, 16);
+		lblPatient.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblPatient.setBounds(43, 14, 56, 16);
 		contentPane.add(lblPatient);
 		
 		JList list = new JList();
+		list.setFont(new Font("Arial", Font.PLAIN, 15));
 		list.setBounds(43, 119, 499, 188);
 		contentPane.add(list);
 		DefaultListModel DLM= new DefaultListModel();
@@ -121,10 +124,12 @@ public class View_pAppointment extends JFrame {
 		
 		
 		JLabel lblAppointments = new JLabel("Appointments");
+		lblAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblAppointments.setBounds(43, 67, 89, 16);
 		contentPane.add(lblAppointments);
 		
 		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -134,15 +139,18 @@ public class View_pAppointment extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblDoctorName = new JLabel("Doctor Name");
+		lblDoctorName.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblDoctorName.setBounds(43, 96, 89, 16);
 		contentPane.add(lblDoctorName);
 		
 		JLabel lblDate = new JLabel("Date");
-		lblDate.setBounds(153, 96, 89, 16);
+		lblDate.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblDate.setBounds(153, 96, 42, 16);
 		contentPane.add(lblDate);
 		
 		JLabel lblSlot = new JLabel("Slot");
-		lblSlot.setBounds(224, 96, 89, 16);
+		lblSlot.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblSlot.setBounds(207, 96, 42, 16);
 		contentPane.add(lblSlot);
 	}
 }

@@ -93,13 +93,8 @@ public class Patients_logged extends JFrame {
 			}
 		});
 		btnBookAppointments.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnBookAppointments.setBounds(111, 196, 170, 25);
+		btnBookAppointments.setBounds(111, 155, 170, 25);
 		contentPane.add(btnBookAppointments);
-		
-		JButton btnNewButton = new JButton("Check Avaliablity");
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton.setBounds(108, 150, 170, 25);
-		contentPane.add(btnNewButton);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -115,7 +110,7 @@ public class Patients_logged extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("View Reports");
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(111, 247, 170, 25);
+		btnNewButton_1.setBounds(111, 211, 170, 25);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnEditProfile = new JButton("View Profile");
@@ -151,7 +146,7 @@ public class Patients_logged extends JFrame {
 			}
 		});
 		btnNewButton_3.setFont(new Font("Arial", Font.PLAIN, 15));
-		btnNewButton_3.setBounds(111, 297, 170, 25);
+		btnNewButton_3.setBounds(111, 270, 170, 25);
 		contentPane.add(btnNewButton_3);
 	}
 }
